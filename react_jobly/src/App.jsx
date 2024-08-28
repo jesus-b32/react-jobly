@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import JoblyApi from '../api';
 //components
 import HomePage from './Homepage';
 import CompanyList from './CompanyList';
-import Company from './Company';
+import CompanyDetail from './CompanyDetail';
 import JobList from './JobList';
 import Job from './Job';
 import NewUserForm from './NewUserForm';
@@ -14,13 +15,41 @@ import NavBar from './NavBar';
 import NotFound from './NotFoundPage';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  // store the item type being added; updated in NewItemForm component
+  // const [itemType, setItemType] = useState('');
+  //store the new item data; updated in NewItemForm component
+  // const [newItem, setNewItem] = useState(null);
+
+  //store the list of companies; updated on first render and when new item added
+  const [companies, setCompanies] = useState([]);
+  //store the list of drinks available; updated on first render and when new item added
+  // const [drinks, setDrinks] = useState([]);
+
+  useEffect(() => {
+    async function getCompanies() {
+      const companies = await JoblyApi.getCompanies();
+      setCompanies(companies);
+      setIsLoading(false);
+    }
+    getCompanies();
+    // console.log('companies: ', companies);
+  }, []);
+
+  if (isLoading) {
+    return <h1>Loading &hellip;</h1>;
+  }
+
   return (
     <div>
       <NavBar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/companies' element={<CompanyList />} />
-        <Route path='/companies/:handle' element={<Company />} />
+        <Route
+          path='/companies'
+          element={<CompanyList companies={companies} />}
+        />
+        <Route path='/companies/:handle' element={<CompanyDetail />} />
         <Route path='/jobs' element={<JobList />} />
         <Route path='/login' element={<LoginUserForm />} />
         <Route path='/signup' element={<NewUserForm />} />
