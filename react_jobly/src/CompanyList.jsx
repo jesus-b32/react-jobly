@@ -4,10 +4,19 @@ import CompanyDetail from './CompanyDetail';
 import SearchBox from './SearchBox';
 
 function CompanyList({ companies }) {
-  const [filter, setFilter] = useState('');
+  const [filterTerm, setFilterTerm] = useState('');
+  // console.log('filter Term: ', filterTerm);
+  const filteredCompanies =
+    filterTerm === ''
+      ? companies
+      : companies.filter((company) =>
+          company.name.toLowerCase().includes(filterTerm.toLowerCase())
+        );
+  // console.log('filtered List: ', filteredCompanies);
   return (
     <>
-      {companies.map((company) => (
+      <SearchBox updateFilter={setFilterTerm} />
+      {filteredCompanies.map((company) => (
         <CompanyDetail key={company.handle} company={company} />
       ))}
     </>

@@ -7,7 +7,7 @@ function SearchBox({ updateFilter }) {
     searchTerm: '',
   };
 
-  const [formData, setFormData] = useState('');
+  const [formData, setFormData] = useState(INITIAL_STATE);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -26,8 +26,8 @@ function SearchBox({ updateFilter }) {
     <>
       <Form onSubmit={handleSubmit}>
         <Input
-          id='searchFilter'
-          name='searchFilter'
+          id='searchTerm'
+          name='searchTerm'
           type='text'
           placeholder='Enter search term'
           value={formData.searchTerm}
