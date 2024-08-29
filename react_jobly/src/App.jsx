@@ -7,7 +7,6 @@ import HomePage from './Homepage';
 import CompanyList from './CompanyList';
 import CompanyDetail from './CompanyDetail';
 import JobList from './JobList';
-import Job from './Job';
 import NewUserForm from './NewUserForm';
 import EditUserForm from './EditUserForm';
 import LoginUserForm from './LoginUserForm';
@@ -24,7 +23,8 @@ function App() {
   //store the list of companies; updated on first render and when new item added
   const [companies, setCompanies] = useState([]);
   //store the list of drinks available; updated on first render and when new item added
-  // const [drinks, setDrinks] = useState([]);
+  // const [company, setCompany] = useState({});
+  // const [companyHandle, setCompanyHandle] = useState('');
 
   useEffect(() => {
     async function getCompanies() {
@@ -35,6 +35,17 @@ function App() {
     getCompanies();
     // console.log('companies: ', companies);
   }, []);
+
+  // useEffect(() => {
+  //   async function getCompany(companyHandle) {
+  //     const company = await JoblyApi.getCompany(companyHandle);
+  //     console.log('company', company);
+  //     setCompany(company);
+  //     // setIsLoading(false);
+  //   }
+  //   getCompany(companyHandle);
+  //   // console.log('companies: ', companies);
+  // }, [companyHandle]);
 
   if (isLoading) {
     return <h1>Loading &hellip;</h1>;

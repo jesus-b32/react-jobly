@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import CompanyDetail from './CompanyDetail';
+import { Link } from 'react-router-dom';
+import CompanyCard from './CompanyCard';
 import SearchBox from './SearchBox';
 
 function CompanyList({ companies }) {
@@ -17,7 +18,9 @@ function CompanyList({ companies }) {
     <>
       <SearchBox updateFilter={setFilterTerm} />
       {filteredCompanies.map((company) => (
-        <CompanyDetail key={company.handle} company={company} />
+        <Link to={`/companies/${company.handle}`} key={company.handle}>
+          <CompanyCard key={company.handle} company={company} />
+        </Link>
       ))}
     </>
   );
