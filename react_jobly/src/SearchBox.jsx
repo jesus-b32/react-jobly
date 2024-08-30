@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Form, Input, Button } from 'reactstrap';
+import { Form, Input, Button, Row, Col } from 'reactstrap';
 
 function SearchBox({ updateFilter }) {
   const INITIAL_STATE = {
@@ -24,16 +24,22 @@ function SearchBox({ updateFilter }) {
   }
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          id='searchTerm'
-          name='searchTerm'
-          type='text'
-          placeholder='Enter search term'
-          value={formData.searchTerm}
-          onChange={handleChange}
-        />
-        <Button>Submit</Button>
+      <Form onSubmit={handleSubmit} className='mb-4'>
+        <Row>
+          <Col xs='9'>
+            <Input
+              id='searchTerm'
+              name='searchTerm'
+              type='text'
+              placeholder='Enter search term'
+              value={formData.searchTerm}
+              onChange={handleChange}
+            />
+          </Col>
+          <Col xs='auto'>
+            <Button>Submit</Button>
+          </Col>
+        </Row>
       </Form>
     </>
   );

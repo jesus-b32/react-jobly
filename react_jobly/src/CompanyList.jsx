@@ -6,7 +6,7 @@ import SearchBox from './SearchBox';
 
 function CompanyList({ companies }) {
   const [filterTerm, setFilterTerm] = useState('');
-  // console.log('filter Term: ', filterTerm);
+  // create new array filtered using filterTerm
   const filteredCompanies =
     filterTerm === ''
       ? companies

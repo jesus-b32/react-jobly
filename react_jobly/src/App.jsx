@@ -15,25 +15,22 @@ import NotFound from './NotFoundPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  // store the item type being added; updated in NewItemForm component
-  // const [itemType, setItemType] = useState('');
-  //store the new item data; updated in NewItemForm component
-  // const [newItem, setNewItem] = useState(null);
 
   //store the list of companies; updated on first render and when new item added
   const [companies, setCompanies] = useState([]);
-  //store the list of drinks available; updated on first render and when new item added
-  // const [company, setCompany] = useState({});
-  // const [companyHandle, setCompanyHandle] = useState('');
+
+  //store the list of companies; updated on first render and when new item added
+  const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
     async function getCompanies() {
       const companies = await JoblyApi.getCompanies();
+      const jobs = await JoblyApi.getJobs();
       setCompanies(companies);
+      setJobs(jobs);
       setIsLoading(false);
     }
     getCompanies();
-    // console.log('companies: ', companies);
   }, []);
 
   // useEffect(() => {
@@ -61,7 +58,7 @@ function App() {
           element={<CompanyList companies={companies} />}
         />
         <Route path='/companies/:handle' element={<CompanyDetail />} />
-        <Route path='/jobs' element={<JobList />} />
+        <Route path='/jobs' element={<JobList jobs={jobs} />} />
         <Route path='/login' element={<LoginUserForm />} />
         <Route path='/signup' element={<NewUserForm />} />
         <Route path='/profile' element={<EditUserForm />} />

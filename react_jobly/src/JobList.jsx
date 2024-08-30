@@ -15,7 +15,6 @@ function JobList({ jobs }) {
   return (
     <>
       <SearchBox updateFilter={setFilterTerm} />
-
       {filteredJobs.map((job) => (
         <JobCard key={job.id} job={job} />
       ))}
