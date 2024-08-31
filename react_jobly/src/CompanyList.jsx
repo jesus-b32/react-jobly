@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CompanyCard from './CompanyCard';
 import SearchBox from './SearchBox';
+import { Container, Row, Col } from 'reactstrap';
 
 function CompanyList({ companies }) {
   const [filterTerm, setFilterTerm] = useState('');
@@ -16,12 +17,24 @@ function CompanyList({ companies }) {
   // console.log('filtered List: ', filteredCompanies);
   return (
     <>
-      <SearchBox updateFilter={setFilterTerm} />
-      {filteredCompanies.map((company) => (
-        <Link to={`/companies/${company.handle}`} key={company.handle}>
-          <CompanyCard key={company.handle} company={company} />
-        </Link>
-      ))}
+      <Container fluid>
+        <SearchBox updateFilter={setFilterTerm} />
+      </Container>
+
+      <Container fluid>
+        {filteredCompanies.map((company) => (
+          <Row
+            key={company.handle}
+            className='d-flex align-items-center justify-content-center'
+          >
+            <Col className='col-8'>
+              <Link to={`/companies/${company.handle}`} key={company.handle}>
+                <CompanyCard company={company} />
+              </Link>
+            </Col>
+          </Row>
+        ))}
+      </Container>
     </>
   );
 }

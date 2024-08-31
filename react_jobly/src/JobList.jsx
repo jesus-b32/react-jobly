@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import SearchBox from './SearchBox';
 import JobCard from './JobCard';
+import { Container, Row, Col } from 'reactstrap';
 
 function JobList({ jobs }) {
   const [filterTerm, setFilterTerm] = useState('');
@@ -14,10 +15,21 @@ function JobList({ jobs }) {
   // console.log('filtered List: ', filteredCompanies);
   return (
     <>
-      <SearchBox updateFilter={setFilterTerm} />
-      {filteredJobs.map((job) => (
-        <JobCard key={job.id} job={job} />
-      ))}
+      <Container fluid>
+        <SearchBox updateFilter={setFilterTerm} />
+      </Container>
+      <Container fluid>
+        {filteredJobs.map((job) => (
+          <Row
+            key={job.id}
+            className='d-flex align-items-center justify-content-center'
+          >
+            <Col className='col-8'>
+              <JobCard job={job} />
+            </Col>
+          </Row>
+        ))}
+      </Container>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './App.css';
+// import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import JoblyApi from '../api';
 //components
@@ -49,7 +49,7 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <NavBar />
       <Routes>
         <Route path='/' element={<HomePage />} />
@@ -64,7 +64,7 @@ function App() {
         <Route path='/profile' element={<EditUserForm />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
-    </div>
+    </>
   );
 }
 

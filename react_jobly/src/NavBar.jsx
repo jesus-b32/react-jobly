@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Navbar, Nav, NavItem } from 'reactstrap';
+import {
+  Navbar,
+  Nav,
+  NavItem,
+  NavbarBrand,
+  NavbarToggler,
+  Collapse,
+} from 'reactstrap';
 
 function NavBar() {
-  return (
-    <div>
-      <Navbar expand='md'>
-        <NavLink exact to='/' className='navbar-brand'>
-          Jobly
-        </NavLink>
+  const [isOpen, setIsOpen] = useState(false);
 
-        <Nav className='ml-auto' navbar>
-          <NavItem>
-            <NavLink to='/login'>Login</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink to='/signup'>Sign Up</NavLink>
-          </NavItem>
-        </Nav>
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div className='mb-4'>
+      <Navbar color='dark' dark container='fluid' expand='md'>
+        <NavbarBrand href='/'>Jobly</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className='me-auto' navbar>
+            <NavItem>
+              <NavLink href='/login'>Login</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href='/signup'>Sign Up</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
       </Navbar>
     </div>
   );

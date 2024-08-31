@@ -25,7 +25,7 @@ function SearchBox({ updateFilter }) {
   return (
     <>
       <Form onSubmit={handleSubmit} className='mb-4'>
-        <Row>
+        <Row className='d-flex align-items-center justify-content-center'>
           <Col xs='9'>
             <Input
               id='searchTerm'
