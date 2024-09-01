@@ -15,12 +15,14 @@ import NotFound from './NotFoundPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-
   //store the list of companies; updated on first render and when new item added
   const [companies, setCompanies] = useState([]);
-
   //store the list of companies; updated on first render and when new item added
   const [jobs, setJobs] = useState([]);
+  //store the state of whether a user is logged in; updated on first render and when user submits login form
+  const [isLoggedIn, setisLoggedIn] = useState(false);
+  //store the username of current user logged in; updated when user submits login form or signup form
+  const [currentUser, setCurrentUser] = useState('');
 
   useEffect(() => {
     async function getCompanies() {
@@ -50,16 +52,22 @@ function App() {
 
   return (
     <>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} />
       <Routes>
-        <Route path='/' element={<HomePage />} />
+        <Route
+          path='/'
+          element={<HomePage isLoggedIn={isLoggedIn} username={currentUser} />}
+        />
         <Route
           path='/companies'
           element={<CompanyList companies={companies} />}
         />
         <Route path='/companies/:handle' element={<CompanyDetail />} />
         <Route path='/jobs' element={<JobList jobs={jobs} />} />
-        <Route path='/login' element={<LoginUserForm />} />
+        <Route
+          path='/login'
+          element={<LoginUserForm setisLoggedIn={setisLoggedIn} />}
+        />
         <Route path='/signup' element={<NewUserForm />} />
         <Route path='/profile' element={<EditUserForm />} />
         <Route path='/*' element={<NotFound />} />

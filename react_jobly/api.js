@@ -75,6 +75,22 @@ class JoblyApi {
     return res.user;
   }
   ////////////////////////////////////////////////////////////////////////////
+
+  //Auth API routes //////////////////////////////////////////////////////
+  /** Authenticate an existing user. */
+  static async authenticateUser(userData) {
+    const res = await this.request(`auth/token`, userData, 'post');
+    if (res.token) JoblyApi.token = res.token;
+    return res.token;
+  }
+
+  /** Register a new user */
+  static async registerUser(newUserData) {
+    const res = await this.request(`auth/register`, newUserData, 'post');
+    if (res.token) JoblyApi.token = res.token;
+    return res.token;
+  }
+  ////////////////////////////////////////////////////////////////////////////
 }
 
 // for now, put token ("testuser" / "password" on class)

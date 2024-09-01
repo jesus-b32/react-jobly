@@ -8,8 +8,9 @@ import {
   NavbarToggler,
   Collapse,
 } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
-function NavBar() {
+function NavBar({ isLoggedIn }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -20,14 +21,31 @@ function NavBar() {
         <NavbarBrand href='/'>Jobly</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className='me-auto' navbar>
-            <NavItem>
-              <NavLink href='/login'>Login</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href='/signup'>Sign Up</NavLink>
-            </NavItem>
-          </Nav>
+          {isLoggedIn ? (
+            <Nav className='me-auto' navbar>
+              <NavItem>
+                <Link to={'/companies'}>Companies</Link>
+              </NavItem>
+              <NavItem>
+                <Link to={'/jobs'}>Jobs</Link>
+              </NavItem>
+              <NavItem>
+                <Link to={'/profile'}>Profile</Link>
+              </NavItem>
+              <NavItem>
+                <Link to={'/logout'}>Log Out</Link>
+              </NavItem>
+            </Nav>
+          ) : (
+            <Nav className='me-auto' navbar>
+              <NavItem>
+                <Link to={'/login'}>Login</Link>
+              </NavItem>
+              <NavItem>
+                <Link to={'/signup'}>Sign Up</Link>
+              </NavItem>
+            </Nav>
+          )}
         </Collapse>
       </Navbar>
     </div>
