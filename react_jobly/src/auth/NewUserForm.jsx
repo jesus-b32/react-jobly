@@ -8,9 +8,12 @@ import {
   Col,
   FormGroup,
   Label,
+  FormFeedback,
 } from 'reactstrap';
+import { useNavigate } from 'react-router-dom';
 
-function NewUserForm() {
+function NewUserForm({ signup }) {
+  const navigate = useNavigate();
   const INITIAL_STATE = {
     username: '',
     password: '',
@@ -21,6 +24,8 @@ function NewUserForm() {
 
   const [formData, setFormData] = useState(INITIAL_STATE);
 
+  const [formErrors, setFormErrors] = useState([]);
+
   function handleChange(event) {
     const { name, value } = event.target;
     setFormData((formData) => ({
@@ -29,16 +34,21 @@ function NewUserForm() {
     }));
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    // handleLogin((data) => formData);
-    setFormData(INITIAL_STATE);
+    const result = await signup(formData);
+    if (result.success) {
+      setFormData(INITIAL_STATE);
+      navigate('/');
+    } else {
+      setFormErrors(result.errors);
+    }
   }
   return (
     <Container>
       <Form onSubmit={handleSubmit} className='mb-4'>
         <FormGroup row>
-          <Label for='username' md='2'>
+          <Label for='username' md='1'>
             Username:
           </Label>
           <Col md='10'>
@@ -54,7 +64,7 @@ function NewUserForm() {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='password' md='2'>
+          <Label for='password' md='1'>
             Password:
           </Label>
           <Col md='10'>
@@ -70,7 +80,7 @@ function NewUserForm() {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='firstName' md='2'>
+          <Label for='firstName' md='1'>
             First Name:
           </Label>
           <Col md='10'>
@@ -86,7 +96,7 @@ function NewUserForm() {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='lastName' md='2'>
+          <Label for='lastName' md='1'>
             Last Name:
           </Label>
           <Col md='10'>
@@ -102,7 +112,7 @@ function NewUserForm() {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='email' md='2'>
+          <Label for='email' md='1'>
             Email:
           </Label>
           <Col md='10'>
@@ -117,6 +127,9 @@ function NewUserForm() {
             />
           </Col>
         </FormGroup>
+        {formErrors.length ? (
+          <FormFeedback tooltip>{formErrors}</FormFeedback>
+        ) : null}
         <Button>Submit</Button>
       </Form>
     </Container>

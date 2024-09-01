@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CompanyCard from './CompanyCard';
-import SearchBox from './SearchBox';
+import SearchBox from '../common/SearchBox';
 import { Container, Row, Col } from 'reactstrap';
 
 function CompanyList({ companies }) {
@@ -14,7 +14,7 @@ function CompanyList({ companies }) {
       : companies.filter((company) =>
           company.name.toLowerCase().includes(filterTerm.toLowerCase())
         );
-  // console.log('filtered List: ', filteredCompanies);
+
   return (
     <>
       <Container fluid>

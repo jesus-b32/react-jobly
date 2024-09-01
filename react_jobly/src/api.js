@@ -78,25 +78,23 @@ class JoblyApi {
 
   //Auth API routes //////////////////////////////////////////////////////
   /** Authenticate an existing user. */
-  static async authenticateUser(userData) {
+  static async login(userData) {
     const res = await this.request(`auth/token`, userData, 'post');
-    if (res.token) JoblyApi.token = res.token;
     return res.token;
   }
 
   /** Register a new user */
-  static async registerUser(newUserData) {
+  static async signup(newUserData) {
     const res = await this.request(`auth/register`, newUserData, 'post');
-    if (res.token) JoblyApi.token = res.token;
     return res.token;
   }
   ////////////////////////////////////////////////////////////////////////////
 }
 
 // for now, put token ("testuser" / "password" on class)
-JoblyApi.token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
-  'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
-  'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc';
+// JoblyApi.token =
+//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZ' +
+//   'SI6InRlc3R1c2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTU5ODE1OTI1OX0.' +
+//   'FtrMwBQwe6Ue-glIFgz_Nf8XxRT2YecFCiSpYL0fCXc';
 
 export default JoblyApi;

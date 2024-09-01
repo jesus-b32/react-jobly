@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import UserContext from '../auth/UserContext';
 import {
   Navbar,
   Nav,
@@ -10,7 +10,8 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function NavBar({ isLoggedIn }) {
+function NavBar({ logout }) {
+  const { currentUser } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -21,7 +22,7 @@ function NavBar({ isLoggedIn }) {
         <NavbarBrand href='/'>Jobly</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          {isLoggedIn ? (
+          {currentUser ? (
             <Nav className='me-auto' navbar>
               <NavItem>
                 <Link to={'/companies'}>Companies</Link>
@@ -33,7 +34,9 @@ function NavBar({ isLoggedIn }) {
                 <Link to={'/profile'}>Profile</Link>
               </NavItem>
               <NavItem>
-                <Link to={'/logout'}>Log Out</Link>
+                <Link to={'/'} onClick={logout}>
+                  Log Out {currentUser.firstName}
+                </Link>
               </NavItem>
             </Nav>
           ) : (
