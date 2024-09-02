@@ -10,23 +10,16 @@ function CompanyList() {
   //store the list of companies; updated on first render and when new item added
   const [companies, setCompanies] = useState(null);
 
-  //get intial list of companies on first render
+  /** get a list of companies with the option to filter by name */
+  async function getCompanies(name) {
+    let companies = await JoblyApi.getCompanies(name);
+    setCompanies(companies);
+  }
+
+  //get list of companies on first render
   useEffect(() => {
-    async function getCompanies() {
-      const companies = await JoblyApi.getCompanies();
-      setCompanies(companies);
-    }
     getCompanies();
   }, []);
-
-  const [filterTerm, setFilterTerm] = useState('');
-  // create new array filtered using filterTerm
-  const filteredCompanies =
-    filterTerm === ''
-      ? companies
-      : companies.filter((company) =>
-          company.name.toLowerCase().includes(filterTerm.toLowerCase())
-        );
 
   if (!companies) {
     return <h1>Loading &hellip;</h1>;
@@ -35,11 +28,11 @@ function CompanyList() {
   return (
     <>
       <Container fluid>
-        <SearchBox updateFilter={setFilterTerm} />
+        <SearchBox filter={getCompanies} />
       </Container>
 
       <Container fluid>
-        {filteredCompanies.map((company) => (
+        {companies.map((company) => (
           <Row
             key={company.handle}
             className='d-flex align-items-center justify-content-center'

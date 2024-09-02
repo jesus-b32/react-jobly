@@ -48,10 +48,10 @@ function NewUserForm({ signup }) {
     <Container>
       <Form onSubmit={handleSubmit} className='mb-4'>
         <FormGroup row>
-          <Label for='username' md='1'>
+          <Label for='username' lg='1'>
             Username:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='username'
               name='username'
@@ -64,10 +64,10 @@ function NewUserForm({ signup }) {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='password' md='1'>
+          <Label for='password' lg='1'>
             Password:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='password'
               name='password'
@@ -80,10 +80,10 @@ function NewUserForm({ signup }) {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='firstName' md='1'>
+          <Label for='firstName' lg='1'>
             First Name:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='firstName'
               name='firstName'
@@ -96,10 +96,10 @@ function NewUserForm({ signup }) {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='lastName' md='1'>
+          <Label for='lastName' lg='1'>
             Last Name:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='lastName'
               name='lastName'
@@ -112,10 +112,10 @@ function NewUserForm({ signup }) {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='email' md='1'>
+          <Label for='email' lg='1'>
             Email:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='email'
               name='email'

@@ -46,10 +46,10 @@ function LoginUserForm({ login }) {
     <Container>
       <Form onSubmit={handleSubmit} className='mb-4'>
         <FormGroup row>
-          <Label for='username' md='1'>
+          <Label for='username' lg='1'>
             Username:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='username'
               name='username'
@@ -63,10 +63,10 @@ function LoginUserForm({ login }) {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for='password' md='1'>
+          <Label for='password' lg='1'>
             Password:
           </Label>
-          <Col md='10'>
+          <Col lg='10'>
             <Input
               id='password'
               name='password'

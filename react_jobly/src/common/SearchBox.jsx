@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Form, Input, Button, Row, Col } from 'reactstrap';
 
-function SearchBox({ updateFilter }) {
+function SearchBox({ filter }) {
   const INITIAL_STATE = {
     searchTerm: '',
   };
@@ -19,7 +19,8 @@ function SearchBox({ updateFilter }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    updateFilter((filter) => formData.searchTerm);
+    // Trim to remove acccidental whitespaces in search
+    filter(formData.searchTerm.trim() || null);
     setFormData(INITIAL_STATE);
   }
   return (
