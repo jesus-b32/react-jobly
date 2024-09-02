@@ -74,6 +74,12 @@ class JoblyApi {
     const res = await this.request(`users/${username}`);
     return res.user;
   }
+
+  /** update an existing user */
+  static async updateUser(username, newUserData) {
+    const res = await this.request(`users/${username}`, newUserData, 'patch');
+    return res.user;
+  }
   ////////////////////////////////////////////////////////////////////////////
 
   //Auth API routes //////////////////////////////////////////////////////

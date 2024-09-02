@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import {
   Form,
   Input,
@@ -8,7 +7,7 @@ import {
   FormGroup,
   Col,
   Container,
-  FormFeedback,
+  Alert,
 } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,7 +20,6 @@ function LoginUserForm({ login }) {
   };
 
   const [formData, setFormData] = useState(INITIAL_STATE);
-
   const [formErrors, setFormErrors] = useState([]);
 
   function handleChange(event) {
@@ -32,11 +30,14 @@ function LoginUserForm({ login }) {
     }));
   }
 
+  /** On submit, authenticate user on backend and display any errors.
+   *  if successful
+   *  - redirect to homepage
+   */
   async function handleSubmit(event) {
     event.preventDefault();
     const result = await login(formData);
     if (result.success) {
-      setFormData(INITIAL_STATE);
       navigate('/');
     } else {
       setFormErrors(result.errors);
@@ -79,9 +80,7 @@ function LoginUserForm({ login }) {
             />
           </Col>
         </FormGroup>
-        {formErrors.length ? (
-          <FormFeedback tooltip>{formErrors}</FormFeedback>
-        ) : null}
+        {formErrors.length ? <Alert color='danger'>{formErrors}</Alert> : null}
         <Button>Submit</Button>
       </Form>
     </Container>
