@@ -13,10 +13,14 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   //store user details of current user logged in; updated when user submits login form or signup form
   const [token, setToken] = useLocalStorage('currUserToken');
+  //store the job ids that user as applied for; updated when user clicks on apply button in jobs page or company detail page
+  const [jobIds, setJobIds] = useState(new Set([]));
 
-  // Load user info from API. Until a user is logged in and they have a token,
-  // this should not run. It only needs to re-run when a user logs out, so
-  // the value of the token is a dependency for this effect.
+  /**
+   * Load user info from API. Until a user is logged in and they have a token,
+  this should not run. It only needs to re-run when a user logs out, so
+  the value of the token is a dependency for this effect.
+   */
   useEffect(() => {
     async function getCurrentUser() {
       if (token) {
@@ -26,18 +30,16 @@ function App() {
           JoblyApi.token = token;
           const currentUser = await JoblyApi.getUser(username);
           setCurrentUser(currentUser);
-          // setApplicationIds(new Set(currentUser.applications));
+          setJobIds(new Set(currentUser.applications));
         } catch (err) {
-          console.error('App loadUserInfo: problem loading', err);
+          console.error('App load User Info: problem loading', err);
           setCurrentUser(null);
         }
       }
       setIsLoading(false);
     }
-
-    // set infoLoaded to false while async getCurrentUser runs; once the
-    // data is fetched (or even if an error happens!), this will be set back
-    // to false to control the spinner.
+    /** set isLoading to false while getting user details;
+     * once the data is fetched (or even if an error happens!), this will be set backto false to dsiable loading screen.*/
     setIsLoading(true);
     getCurrentUser();
   }, [token]);
@@ -74,14 +76,28 @@ function App() {
     setToken(null);
   }
 
-  //show a loading message while getting initial data
+  /** Check if a job has been applied to */
+  function hasAppliedToJob(id) {
+    return jobIds.has(id);
+  }
+
+  /** Apply to a job. Make API call to backend and update set of job ids. */
+  function applyToJob(id) {
+    if (hasAppliedToJob(id)) return;
+    JoblyApi.applyToJob(currentUser.username, id);
+    setJobIds(new Set([...jobIds, id]));
+  }
+
+  /**show a loading message while getting initial data */
   if (isLoading) {
     return <h1>Loading &hellip;</h1>;
   }
 
   return (
     <>
-      <UserContext.Provider value={{ currentUser, setCurrentUser }}>
+      <UserContext.Provider
+        value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}
+      >
         <div className='App'>
           <NavBar logout={logout} />
           <ReactRoutes login={login} signup={signup} />
