@@ -38,7 +38,11 @@ function CompanyList() {
             className='d-flex align-items-center justify-content-center'
           >
             <Col className='col-8'>
-              <Link to={`/companies/${company.handle}`} key={company.handle}>
+              <Link
+                to={`/companies/${company.handle}`}
+                key={company.handle}
+                className='text-decoration-none'
+              >
                 <CompanyCard company={company} />
               </Link>
             </Col>

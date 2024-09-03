@@ -25,16 +25,35 @@ function NavBar({ logout }) {
           {currentUser ? (
             <Nav className='ms-auto'>
               <NavItem className='ms-4'>
-                <NavLink to='/companies'>Companies</NavLink>
+                <NavLink
+                  to='/companies'
+                  className='text-decoration-none text-white bg-dark'
+                >
+                  Companies
+                </NavLink>
               </NavItem>
               <NavItem className='ms-4'>
-                <NavLink to='/jobs'>Jobs</NavLink>
+                <NavLink
+                  to='/jobs'
+                  className='text-decoration-none text-white bg-dark'
+                >
+                  Jobs
+                </NavLink>
               </NavItem>
               <NavItem className='ms-4'>
-                <NavLink to='/profile'>Profile</NavLink>
+                <NavLink
+                  to='/profile'
+                  className='text-decoration-none text-white bg-dark'
+                >
+                  Profile
+                </NavLink>
               </NavItem>
               <NavItem className='mx-4'>
-                <NavLink to='/' onClick={logout}>
+                <NavLink
+                  to='/'
+                  onClick={logout}
+                  className='text-decoration-none text-white bg-dark'
+                >
                   Logout
                 </NavLink>
               </NavItem>
@@ -42,10 +61,20 @@ function NavBar({ logout }) {
           ) : (
             <Nav className='ms-auto'>
               <NavItem className='ms-4'>
-                <NavLink to='/login'>Login</NavLink>
+                <NavLink
+                  to='/login'
+                  className='text-decoration-none text-white bg-dark'
+                >
+                  Login
+                </NavLink>
               </NavItem>
               <NavItem className='mx-4'>
-                <NavLink to='/signup'>Sign Up</NavLink>
+                <NavLink
+                  to='/signup'
+                  className='text-decoration-none text-white bg-dark'
+                >
+                  Sign Up
+                </NavLink>
               </NavItem>
             </Nav>
           )}

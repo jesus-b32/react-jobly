@@ -28,7 +28,7 @@ function JobCard({ job }) {
 
   return (
     <>
-      <Card>
+      <Card className='mb-4'>
         <CardBody className='text-center'>
           <CardTitle tag={'h4'}>{job.title}</CardTitle>
           {job.companyName ? (

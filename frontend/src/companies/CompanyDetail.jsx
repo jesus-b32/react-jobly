@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import JobCard from '../jobs/JobCard';
 import { useParams } from 'react-router-dom';
 import JoblyApi from '../api';
+import { Container, Row, Col } from 'reactstrap';
 
 function CompanyDetail() {
   const [company, setCompany] = useState({});
@@ -15,13 +16,25 @@ function CompanyDetail() {
     getCompany(handle);
   }, [handle]);
   return (
-    <>
-      <h1>{company.name}</h1>
-      <h2>{company.description}</h2>
+    <Container fluid>
+      <Container fluid className='d-flex align-items-center flex-column mb-4'>
+        <h1>{company.name}</h1>
+        <p>{company.description}</p>
+      </Container>
+
       {company.jobs
-        ? company.jobs.map((job) => <JobCard key={job.id} job={job} />)
+        ? company.jobs.map((job) => (
+            <Row
+              key={job.id}
+              className='d-flex align-items-center justify-content-center'
+            >
+              <Col className='col-8'>
+                <JobCard job={job} />
+              </Col>
+            </Row>
+          ))
         : null}
-    </>
+    </Container>
   );
 }
 

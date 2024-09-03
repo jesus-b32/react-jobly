@@ -2,11 +2,12 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from 'reactstrap';
 import UserContext from '../auth/UserContext';
+import './Homepage.css';
 
 function Homepage() {
   const { currentUser } = useContext(UserContext);
   return (
-    <Container fluid>
+    <Container fluid className='d-flex flex-column home'>
       <h1>
         <b>Jobly</b>
       </h1>

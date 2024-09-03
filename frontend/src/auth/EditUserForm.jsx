@@ -147,7 +147,7 @@ function EditUserForm() {
         {updateSuccess ? (
           <Alert color='success'>Successfully Updated Profile</Alert>
         ) : null}
-        <Button>Submit</Button>
+        <Button color='primary'>Submit</Button>
       </Form>
     </Container>
   );

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-// import './App.css';
+import './App.css';
 import JoblyApi from './api';
 import NavBar from './navbar/NavBar';
 import ReactRoutes from './routes/ReactRoutes';
@@ -98,10 +98,8 @@ function App() {
       <UserContext.Provider
         value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}
       >
-        <div className='App'>
-          <NavBar logout={logout} />
-          <ReactRoutes login={login} signup={signup} />
-        </div>
+        <NavBar logout={logout} />
+        <ReactRoutes login={login} signup={signup} />
       </UserContext.Provider>
     </>
   );

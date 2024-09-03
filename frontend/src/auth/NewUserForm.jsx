@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Form,
   Input,
@@ -9,10 +9,16 @@ import {
   Label,
   Alert,
 } from 'reactstrap';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+import UserContext from './UserContext';
 
 function NewUserForm({ signup }) {
   const navigate = useNavigate();
+  const { currentUser } = useContext(UserContext);
+
+  /**redirect to homepage if already logged in */
+  if (currentUser) return <Navigate to={'/'} />;
+
   const INITIAL_STATE = {
     username: '',
     password: '',
@@ -129,7 +135,7 @@ function NewUserForm({ signup }) {
           </Col>
         </FormGroup>
         {formErrors.length ? <Alert color='danger'>{formErrors}</Alert> : null}
-        <Button>Submit</Button>
+        <Button color='primary'>Submit</Button>
       </Form>
     </Container>
   );

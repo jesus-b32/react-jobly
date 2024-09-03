@@ -38,7 +38,7 @@ function SearchBox({ filter }) {
             />
           </Col>
           <Col xs='auto'>
-            <Button>Submit</Button>
+            <Button color='primary'>Submit</Button>
           </Col>
         </Row>
       </Form>

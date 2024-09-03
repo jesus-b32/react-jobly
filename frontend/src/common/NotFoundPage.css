@@ -1,0 +1,10 @@
+.not-found {
+    position: absolute;
+    top: auto;
+    left: auto;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

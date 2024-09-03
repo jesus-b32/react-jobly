@@ -1,13 +1,14 @@
 import React from 'react';
-import { Card, CardBody } from 'reactstrap';
+import { Container } from 'reactstrap';
+import './NotFoundPage.css';
 
 function NotFound() {
   return (
-    <div>
-      <Card>
-        <CardBody>Hmmm. I cannot seem to find what you want.</CardBody>
-      </Card>
-    </div>
+    <Container fluid className='d-flex not-found'>
+      <h1>
+        <b>Hmmm. I cannot seem to find what you want.</b>
+      </h1>
+    </Container>
   );
 }
 
