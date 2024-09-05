@@ -36,6 +36,7 @@ function CompanyList() {
           <Row
             key={company.handle}
             className='d-flex align-items-center justify-content-center'
+            role='row'
           >
             <Col className='col-8'>
               <Link

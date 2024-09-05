@@ -32,6 +32,7 @@ function JobList() {
           <Row
             key={job.id}
             className='d-flex align-items-center justify-content-center'
+            role='row'
           >
             <Col className='col-8'>
               <JobCard job={job} />
