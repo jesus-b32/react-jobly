@@ -11,6 +11,14 @@ const testuser = {
   email: 'test@gmail.com',
   applications: [],
 };
+
+const editTestuser = {
+  username: 'updatedUser',
+  firstName: 'first',
+  lastName: 'last',
+  email: 'new@gmail.com',
+};
+
 const testuser2 = {
   username: 'testuser2',
   password: 'password2',
@@ -61,4 +69,12 @@ const companyDetail = {
   jobs: jobData,
 };
 
-export { companyData, jobData, testToken, testuser, testuser2, companyDetail };
+export {
+  companyData,
+  jobData,
+  testToken,
+  testuser,
+  testuser2,
+  companyDetail,
+  editTestuser,
+};

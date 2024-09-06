@@ -1,4 +1,4 @@
-import NewUserForm from '../../NewUserForm';
+import NewUserForm from '../NewUserForm';
 import { MemoryRouter } from 'react-router-dom';
 import { it, expect, vi, afterEach } from 'vitest';
 import {
@@ -8,7 +8,7 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import UserContext from '../../UserContext';
+import UserContext from '../UserContext';
 
 /**mock a successful login */
 const signup = vi.fn().mockResolvedValue({ success: true });
